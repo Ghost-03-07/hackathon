@@ -18614,17 +18614,46 @@ const StartingPage = ()=>{
     _s();
     // Define state for the image URL
     const [imageUrl, setImageUrl] = (0, _react.useState)("https://via.placeholder.com/300");
+    const headings = [
+        "Identity Verification",
+        "Secure Your Identity",
+        "Blockchain-Powered Security",
+        "Trusted Verification Platform"
+    ];
+    const [heading, setHeading] = (0, _react.useState)("");
+    const [index, setIndex] = (0, _react.useState)(0);
+    const [charIndex, setCharIndex] = (0, _react.useState)(0);
+    const [isDeleting, setIsDeleting] = (0, _react.useState)(false);
+    (0, _react.useEffect)(()=>{
+        const currentHeading = headings[index];
+        const typingSpeed = isDeleting ? 100 : 200;
+        const timer = setTimeout(()=>{
+            setHeading(currentHeading.substring(0, charIndex));
+            if (!isDeleting && charIndex === currentHeading.length) setTimeout(()=>setIsDeleting(true), 1000);
+            else if (isDeleting && charIndex === 0) {
+                setIsDeleting(false);
+                setIndex((prevIndex)=>(prevIndex + 1) % headings.length);
+            }
+            setCharIndex((prevCharIndex)=>prevCharIndex + (isDeleting ? -1 : 1));
+        }, typingSpeed);
+        return ()=>clearTimeout(timer);
+    }, [
+        charIndex,
+        isDeleting,
+        index
+    ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "app-container",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
-                className: "navbar",
+                className: "navbar animate-navbar",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                        children: "Identity Verification"
+                        className: "typing-heading",
+                        children: heading
                     }, void 0, false, {
                         fileName: "src/startingPage.js",
-                        lineNumber: 11,
+                        lineNumber: 38,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -18635,12 +18664,12 @@ const StartingPage = ()=>{
                                     children: "Home"
                                 }, void 0, false, {
                                     fileName: "src/startingPage.js",
-                                    lineNumber: 14,
+                                    lineNumber: 41,
                                     columnNumber: 13
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/startingPage.js",
-                                lineNumber: 13,
+                                lineNumber: 40,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -18649,12 +18678,12 @@ const StartingPage = ()=>{
                                     children: "Identity"
                                 }, void 0, false, {
                                     fileName: "src/startingPage.js",
-                                    lineNumber: 17,
+                                    lineNumber: 44,
                                     columnNumber: 13
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/startingPage.js",
-                                lineNumber: 16,
+                                lineNumber: 43,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -18663,12 +18692,12 @@ const StartingPage = ()=>{
                                     children: "About"
                                 }, void 0, false, {
                                     fileName: "src/startingPage.js",
-                                    lineNumber: 20,
+                                    lineNumber: 47,
                                     columnNumber: 13
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/startingPage.js",
-                                lineNumber: 19,
+                                lineNumber: 46,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -18677,24 +18706,31 @@ const StartingPage = ()=>{
                                     children: "Contact"
                                 }, void 0, false, {
                                     fileName: "src/startingPage.js",
-                                    lineNumber: 23,
+                                    lineNumber: 50,
                                     columnNumber: 13
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/startingPage.js",
-                                lineNumber: 22,
+                                lineNumber: 49,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/startingPage.js",
-                        lineNumber: 12,
+                        lineNumber: 39,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/startingPage.js",
-                lineNumber: 10,
+                lineNumber: 37,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {
+                className: "end-line"
+            }, void 0, false, {
+                fileName: "src/startingPage.js",
+                lineNumber: 55,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -18705,29 +18741,50 @@ const StartingPage = ()=>{
                     className: "founder-image"
                 }, void 0, false, {
                     fileName: "src/startingPage.js",
-                    lineNumber: 30,
+                    lineNumber: 59,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/startingPage.js",
-                lineNumber: 29,
+                lineNumber: 58,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {
+                className: "end-line"
+            }, void 0, false, {
+                fileName: "src/startingPage.js",
+                lineNumber: 66,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
-                className: "introduction-section"
-            }, void 0, false, {
+                className: "introduction-section",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: "Introduction to your product"
+                    }, void 0, false, {
+                        fileName: "src/startingPage.js",
+                        lineNumber: 70,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                        fileName: "src/startingPage.js",
+                        lineNumber: 71,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/startingPage.js",
-                lineNumber: 38,
+                lineNumber: 69,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/startingPage.js",
-        lineNumber: 8,
+        lineNumber: 35,
         columnNumber: 5
     }, undefined);
 };
-_s(StartingPage, "PgpLHiGYGIlnHZ+RgNAbGrRN9WU=");
+_s(StartingPage, "mlc/QT7uGoh5KkicOLskaUoR7E8=");
 _c = StartingPage;
 exports.default = StartingPage;
 var _c;
