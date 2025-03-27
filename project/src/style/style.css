@@ -103,6 +103,10 @@ body {
   box-shadow: 0 4px 12px rgba(255, 204, 0, 0.5);
 }
 
+.founder-cursor {
+  color: var(--accent-color);
+}
+
 .sep-line {
   width: 12rem;
 }
