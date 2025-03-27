@@ -83,7 +83,7 @@ const StartingPage = () => {
                 animate={{ opacity: [0, 1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
               >
-                |
+                <span className="founder-cursor">|</span>
               </motion.span>
             </motion.h2>
           </motion.div>

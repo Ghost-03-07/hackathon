@@ -19,7 +19,7 @@ const Layout = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 50 }}
       >
-        <h1 className="static-heading">Identity Verification & Security</h1>
+        <h1>Identity</h1>
         <ul>
           <li>
             <a href="/">Home</a>
