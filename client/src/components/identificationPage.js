@@ -53,22 +53,22 @@ const IdentificationPage = () => {
     setUploading(true);
     setError(null);
 
+    // Initialize FormData here
     const formData = new FormData();
     formData.append("document", file);
     formData.append("type", documentType);
 
     try {
-      // Changed to localhost:5000
       const response = await fetch("http://localhost:5000/upload", {
         method: "POST",
         body: formData,
+        // Don't set Content-Type header - let the browser set it automatically
       });
 
-      // Enhanced error handling
       if (!response.ok) {
-        const errorData = await response.json();
+        const errorData = await response.json().catch(() => ({}));
         throw new Error(
-          errorData.error || `HTTP error! status: ${response.status}`
+          errorData.error || `Upload failed with status ${response.status}`
         );
       }
 
@@ -76,14 +76,17 @@ const IdentificationPage = () => {
       setUploadSuccess(true);
       console.log("OCR Results:", data);
 
-      // Optional: Reset form after success
       setTimeout(() => {
         setFile(null);
         setDocumentType("");
         setUploadSuccess(false);
       }, 3000);
     } catch (err) {
-      console.error("Upload error:", err);
+      console.error("Upload error:", {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      });
       setError(err.message || "Upload failed. Check console for details.");
     } finally {
       setUploading(false);

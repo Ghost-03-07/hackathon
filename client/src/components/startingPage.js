@@ -10,7 +10,7 @@ const AnimatedLine = () => {
       animate={{
         width: ["12rem", "2rem", "12rem"],
         height: ["0.2rem", "0.2rem", "0.2rem"],
-        background: ["var(--accent-color)"],
+        background: "white",
       }}
       transition={{
         duration: 2,

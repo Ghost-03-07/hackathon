@@ -75133,9 +75133,7 @@ const AnimatedLine = ()=>{
                 "0.2rem",
                 "0.2rem"
             ],
-            background: [
-                "var(--accent-color)"
-            ]
+            background: "white"
         },
         transition: {
             duration: 2,
@@ -75505,31 +75503,33 @@ const IdentificationPage = ()=>{
         }
         setUploading(true);
         setError(null);
+        // Initialize FormData here
         const formData = new FormData();
         formData.append("document", file);
         formData.append("type", documentType);
         try {
-            // Changed to localhost:5000
             const response = await fetch("http://localhost:5000/upload", {
                 method: "POST",
                 body: formData
             });
-            // Enhanced error handling
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+                const errorData = await response.json().catch(()=>({}));
+                throw new Error(errorData.error || `Upload failed with status ${response.status}`);
             }
             const data = await response.json();
             setUploadSuccess(true);
             console.log("OCR Results:", data);
-            // Optional: Reset form after success
             setTimeout(()=>{
                 setFile(null);
                 setDocumentType("");
                 setUploadSuccess(false);
             }, 3000);
         } catch (err) {
-            console.error("Upload error:", err);
+            console.error("Upload error:", {
+                name: err.name,
+                message: err.message,
+                stack: err.stack
+            });
             setError(err.message || "Upload failed. Check console for details.");
         } finally{
             setUploading(false);
@@ -75580,7 +75580,7 @@ const IdentificationPage = ()=>{
                 children: "Upload Your Document"
             }, void 0, false, {
                 fileName: "src/components/identificationPage.js",
-                lineNumber: 117,
+                lineNumber: 120,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _framerMotion.motion).select, {
@@ -75596,7 +75596,7 @@ const IdentificationPage = ()=>{
                         children: "Select Document Type"
                     }, void 0, false, {
                         fileName: "src/components/identificationPage.js",
-                        lineNumber: 132,
+                        lineNumber: 135,
                         columnNumber: 9
                     }, undefined),
                     documentOptions.map((option, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -75604,13 +75604,13 @@ const IdentificationPage = ()=>{
                             children: option
                         }, index, false, {
                             fileName: "src/components/identificationPage.js",
-                            lineNumber: 134,
+                            lineNumber: 137,
                             columnNumber: 11
                         }, undefined))
                 ]
             }, void 0, true, {
                 fileName: "src/components/identificationPage.js",
-                lineNumber: 126,
+                lineNumber: 129,
                 columnNumber: 7
             }, undefined),
             documentType && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -75631,7 +75631,7 @@ const IdentificationPage = ()=>{
                                 color: "#ffcc00"
                             }, void 0, false, {
                                 fileName: "src/components/identificationPage.js",
-                                lineNumber: 149,
+                                lineNumber: 152,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -75642,20 +75642,20 @@ const IdentificationPage = ()=>{
                                 accept: ".pdf,.jpg,.jpeg"
                             }, void 0, false, {
                                 fileName: "src/components/identificationPage.js",
-                                lineNumber: 150,
+                                lineNumber: 153,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                 children: file ? file.name : "Click to select or drag & drop a .jpg or .pdf file"
                             }, void 0, false, {
                                 fileName: "src/components/identificationPage.js",
-                                lineNumber: 157,
+                                lineNumber: 160,
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/identificationPage.js",
-                        lineNumber: 142,
+                        lineNumber: 145,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -75673,7 +75673,7 @@ const IdentificationPage = ()=>{
                                 children: file ? "Change File" : "Select File"
                             }, void 0, false, {
                                 fileName: "src/components/identificationPage.js",
-                                lineNumber: 165,
+                                lineNumber: 168,
                                 columnNumber: 13
                             }, undefined),
                             file && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _framerMotion.motion).button, {
@@ -75689,13 +75689,13 @@ const IdentificationPage = ()=>{
                                 children: uploading ? "Processing..." : "Submit Document"
                             }, void 0, false, {
                                 fileName: "src/components/identificationPage.js",
-                                lineNumber: 175,
+                                lineNumber: 178,
                                 columnNumber: 15
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/identificationPage.js",
-                        lineNumber: 164,
+                        lineNumber: 167,
                         columnNumber: 11
                     }, undefined),
                     error && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _framerMotion.motion).div, {
@@ -75709,7 +75709,7 @@ const IdentificationPage = ()=>{
                         children: error
                     }, void 0, false, {
                         fileName: "src/components/identificationPage.js",
-                        lineNumber: 188,
+                        lineNumber: 191,
                         columnNumber: 13
                     }, undefined),
                     uploadSuccess && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _framerMotion.motion).div, {
@@ -75723,7 +75723,7 @@ const IdentificationPage = ()=>{
                         children: "Upload successful! Processing your document..."
                     }, void 0, false, {
                         fileName: "src/components/identificationPage.js",
-                        lineNumber: 198,
+                        lineNumber: 201,
                         columnNumber: 13
                     }, undefined)
                 ]
@@ -75731,7 +75731,7 @@ const IdentificationPage = ()=>{
         ]
     }, void 0, true, {
         fileName: "src/components/identificationPage.js",
-        lineNumber: 111,
+        lineNumber: 114,
         columnNumber: 5
     }, undefined);
 };
