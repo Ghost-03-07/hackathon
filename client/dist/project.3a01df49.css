@@ -1,0 +1,119 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap";
+:root {
+  --theme-color: oklch(.558 .288 302.321);
+  --text-color: #fff;
+  --accent-color: #fc0;
+  --dark-bg: #000000b3;
+  --grey: oklch(.869 .022 252.894);
+  --light-grey: oklch(.968 .007 247.896);
+}
+
+body {
+  color: var(--text-color);
+  text-align: center;
+  background-image: url("https://source.unsplash.com/1600x900/?blockchain,security,technology");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  font-family: Poppins, Arial, sans-serif;
+}
+
+.navbar {
+  background: var(--dark-bg);
+  border-bottom: 2px solid var(--accent-color);
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  transition: background-color .5s ease-in-out, transform .3s ease-in-out;
+  display: flex;
+  box-shadow: 0 4px 10px #0000004d;
+}
+
+.navbar:hover {
+  background: #000000e6;
+  transform: translateY(-5px);
+}
+
+.navbar h1 {
+  text-align: center;
+  margin: 0;
+  padding: 1.2rem;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.navbar ul {
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li a {
+  color: var(--text-color);
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 15px;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .5s, transform .3s;
+}
+
+.navbar ul li a:hover {
+  background: var(--accent-color);
+  color: #000;
+  transform: scale(1.1);
+}
+
+.end-line {
+  background-color: var(--grey);
+  padding: .1rem;
+}
+
+.founder-name {
+  color: var(--dark-bg);
+}
+
+.founder-image-container {
+  background: linear-gradient(135deg, #ffffff1a, #00000080);
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 2rem 0;
+  display: flex;
+  box-shadow: 0 6px 12px #0006;
+}
+
+.founder-image {
+  object-fit: cover;
+  border: 6px solid var(--accent-color);
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  box-shadow: 0 4px 12px #ffcc0080;
+}
+
+.introduction-section {
+  background: var(--dark-bg);
+  color: var(--text-color);
+  border-radius: 15px;
+  margin: 40px 10px;
+  padding: 25px;
+  box-shadow: 0 6px 14px #00000080;
+}
+
+.introduction-section h2 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.introduction-section p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+/*# sourceMappingURL=project.3a01df49.css.map */
