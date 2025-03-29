@@ -62,34 +62,19 @@ const IdentificationPage = () => {
       const response = await fetch("http://localhost:5000/upload", {
         method: "POST",
         body: formData,
-        // Don't set Content-Type header - let the browser set it automatically
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.error || `Upload failed with status ${response.status}`
-        );
-      }
+      const textResponse = await response.text(); // Get raw response text
+      console.log("Raw response:", textResponse); // Debugging
 
-      const data = await response.json();
+      const data = JSON.parse(textResponse); // Try parsing manually
+      if (!response.ok) throw new Error(data.error || "Upload failed");
+
       setUploadSuccess(true);
       console.log("OCR Results:", data);
-
-      setTimeout(() => {
-        setFile(null);
-        setDocumentType("");
-        setUploadSuccess(false);
-      }, 3000);
     } catch (err) {
-      console.error("Upload error:", {
-        name: err.name,
-        message: err.message,
-        stack: err.stack,
-      });
+      console.error("Upload error:", err); // Log error object properly
       setError(err.message || "Upload failed. Check console for details.");
-    } finally {
-      setUploading(false);
     }
   };
 
