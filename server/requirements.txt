@@ -1,6 +1,9 @@
-flask==2.0.1
-pytesseract==0.3.8
-Pillow==8.3.1
-PyPDF2==1.26.0
-python-dotenv==0.19.0
-flask-cors==3.0.10
+# OCR
+TESSERACT_CMD=/usr/bin/tesseract
+
+# Blockchain
+BLOCKCHAIN_PROVIDER=https://mainnet.infura.io/v3/YOUR_PROJECT_ID
+CONTRACT_ADDRESS=0xYourContractAddress
+WALLET_ADDRESS=0xYourWalletAddress
+PRIVATE_KEY=your_private_key
+CONTRACT_ABI='[...]'  # Your contract ABI here

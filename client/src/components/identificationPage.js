@@ -64,8 +64,18 @@ const IdentificationPage = () => {
         body: formData,
       });
 
-      const textResponse = await response.text(); // Get raw response text
+      const textResponse = await response.text();
       console.log("Raw response:", textResponse); // Debugging
+
+      try {
+        const data = JSON.parse(textResponse); // Try parsing manually
+        if (!response.ok) throw new Error(data.error || "Upload failed");
+        setUploadSuccess(true);
+        console.log("OCR Results:", data);
+      } catch (err) {
+        console.error("JSON Parsing Error:", err); // More specific error
+        setError("Invalid response from server. Check server logs.");
+      }
 
       const data = JSON.parse(textResponse); // Try parsing manually
       if (!response.ok) throw new Error(data.error || "Upload failed");
